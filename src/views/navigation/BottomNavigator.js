@@ -39,15 +39,6 @@ function BottomNavigator() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Details_Screen"
-        component={DetailsScreen}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icon name="local-mall" color={color} size={28} />
-          ),
-        }}
-      />
       {/*
       <Tab.Screen
         name="Search"
