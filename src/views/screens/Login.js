@@ -14,14 +14,19 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Header,
+  Button
 } from 'react-native';
 
 //import Card
 import { Card } from 'react-native-paper';
 
 const LoginApp = ({ navigation }) => {
-  return (
-    <SafeAreaView style={styles.container}>
+    return (
+
+      
+
+     <SafeAreaView style={styles.container}>
       <Card
         style={{
           borderRadius: 100,
@@ -40,7 +45,7 @@ const LoginApp = ({ navigation }) => {
           placeholder="Enter the Email"
           placeholderTextColor="black"
         />
-       
+        
         <TextInput
           style={styles.texInput2}
           placeholder="Enter Password"
@@ -52,14 +57,27 @@ const LoginApp = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('MyHome')}>
+        onPress={() => navigation.navigate('Home')}>
         <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>
           {' '}
           LOG IN{' '}
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={()=>navigation.navigate('SignUp')}>
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 16,
+            textAlign: 'center',
+          }}>
+          Make an Account {' '}
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
-  );
+    
+ 
+    )  
 };
 
 export default LoginApp;

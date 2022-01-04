@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableHighlight,
+  Touchable,
 } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -18,8 +19,11 @@ import DetailsScreen from "./DetailsScreen";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 import COLORS from "../../consts/colors";
+
 import Milk from "../../assets/milk.png";
 import Eggs from "../../assets/eggs.png";
+import yogurt from "../../assets/yogurt.png";
+import Ghee from "../../assets/Ghee.png";
 
 function Header() {
   return (
@@ -68,7 +72,7 @@ const MyProducts = (prop, { navigation }) => {
     <View style={{ flexDirection: "row" }}>
       <TouchableOpacity style={style.card} onPress={prop.click}>
         <View style={{ alignItems: "center", top: -60 }}>
-          <Image source={prop.product} style={{ height: 120, width: 150 }} />
+          <Image source={prop.product} style={{ height: 120, width: 150, }} />
 
           <View style={{ marginHorizontal: 20, alignItems: "center" }}>
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -90,9 +94,9 @@ const MyProducts = (prop, { navigation }) => {
             <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 50 }}>
               {prop.quantity}
             </Text>
-            <View style={style.addToCartBtn}>
+            <TouchableOpacity style={style.addToCartBtn}>
               <Icon name="add" size={20} color={COLORS.white} />
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </TouchableOpacity>
@@ -104,15 +108,15 @@ function HomeScreen({ navigation }) {
   return (
     <View style={style.container}>
       <Header />
-      <View style={{ paddingHorizontal: 10 }}>
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ paddingHorizontal: 10}}>
+        <View style={{ flexDirection: "row" ,marginBottom:-30}}>
           <MyProducts
             product={Milk}
             tittle="Milk"
             ingredients="Cow Milk"
             quantity="1kg"
             click={() => {
-              navigation.navigate("DetailScreen");
+              navigation.navigate("DetailScreen", { title: "Milk",image: Milk });
             }}
           />
           <MyProducts
@@ -121,27 +125,27 @@ function HomeScreen({ navigation }) {
             ingredients="Desi Eggs"
             quantity="1Dozen"
             click={() => {
-              navigation.navigate("DetailScreen", { title: "Eggs" });
+              navigation.navigate("DetailScreen", { title: "Eggs", image: Eggs });
             }}
           />
         </View>
         <View style={{ flexDirection: "row" }}>
           <MyProducts
-            product={Eggs}
-            tittle="Fruit"
-            ingredients="Fresh Fruits"
+            product={yogurt}
+            tittle="Yogurt"
+            ingredients="Fresh yogurt"
             quantity="1kg"
             click={() => {
-              navigation.navigate("Details_Screen");
+              navigation.navigate("DetailScreen", { title: "Yogurt",image: yogurt });
             }}
           />
           <MyProducts
-            product={Milk}
-            tittle="Vegetables"
-            ingredients="Fesh Vegs"
+            product={Ghee}
+            tittle="Desi Ghee"
+            ingredients="Khalis Desi Ghee"
             quantity="1Kg"
             click={() => {
-              navigation.navigate("Details_Screen");
+              navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee  });
             }}
           />
         </View>

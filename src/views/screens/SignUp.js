@@ -54,21 +54,22 @@ const Signup = ({ navigation }) => {
       </Card>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('LoginScreen')}>
+        // onPress={() => navigation.navigate('LoginScreen')}
+        >
         <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>
           Sign Up{' '}
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>navigation.navigate('Login')} >
         <Text
           style={{
             color: 'white',
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 16,
             textAlign: 'center',
           }}>
-          Already Registered{' '}
+          Login {' '}
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

@@ -43,7 +43,7 @@ function ProductDetails(props) {
             height: 280,
           }}
         >
-          <Image source={Milk} style={{ height: 220, width: 220 }} />
+          <Image source={props.image} style={{ height: 170, width: 200}} />
         </View>
 
         <View style={style.details}>
@@ -66,7 +66,7 @@ function ProductDetails(props) {
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley.
           </Text>
-          <View style={{ marginTop: 40, marginBottom: 40 }}>
+          <View style={{ marginTop: 60, marginBottom: 60 }}>
             <TouchableOpacity activeOpacity={0.8}>
               <View
                 style={{
@@ -90,7 +90,7 @@ function DetailsScreen({ route, navigation }) {
   console.log(route.params.title);
   return (
     <View>
-      <ProductDetails title={route.params.title} navigation={navigation} />
+      <ProductDetails title={route.params.title}  image={route.params.image} navigation={navigation} />
     </View>
   );
 }
@@ -113,7 +113,7 @@ const style = StyleSheet.create({
 
   detailsText: {
     marginTop: 10,
-    lineHeight: 22,
+    lineHeight: 24,
     fontSize: 16,
     color: COLORS.white,
   },
