@@ -34,7 +34,7 @@ function BottomNavigator() {
       }}
     >
       <Tab.Screen
-        name="Home_Screen"
+        name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => {
           return {

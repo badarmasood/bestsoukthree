@@ -79,7 +79,7 @@ const MyProducts = (prop, { navigation }) => {
               {prop.tittle}
             </Text>
             <Text style={{ fontSize: 14, color: COLORS.grey, marginTop: 2 }}>
-              {prop.ingredients}
+              {prop.quantity}
             </Text>
           </View>
 
@@ -92,7 +92,7 @@ const MyProducts = (prop, { navigation }) => {
             }}
           >
             <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 50 }}>
-              {prop.quantity}
+              {prop.price}
             </Text>
             <TouchableOpacity style={style.addToCartBtn}>
               <Icon name="add" size={20} color={COLORS.white} />
@@ -113,8 +113,8 @@ function HomeScreen({ navigation }) {
           <MyProducts
             product={Milk}
             tittle="Milk"
-            ingredients="Cow Milk"
-            quantity="1kg"
+            quantity="1 kg"
+            price='15$'
             click={() => {
               navigation.navigate("DetailScreen", { title: "Milk",image: Milk });
             }}
@@ -122,8 +122,8 @@ function HomeScreen({ navigation }) {
           <MyProducts
             product={Eggs}
             tittle="Eggs"
-            ingredients="Desi Eggs"
-            quantity="1Dozen"
+            quantity="1 Dozen"
+            price='10$'
             click={() => {
               navigation.navigate("DetailScreen", { title: "Eggs", image: Eggs });
             }}
@@ -133,8 +133,8 @@ function HomeScreen({ navigation }) {
           <MyProducts
             product={yogurt}
             tittle="Yogurt"
-            ingredients="Fresh yogurt"
-            quantity="1kg"
+            quantity="1 kg"
+            price='15$'
             click={() => {
               navigation.navigate("DetailScreen", { title: "Yogurt",image: yogurt });
             }}
@@ -142,8 +142,8 @@ function HomeScreen({ navigation }) {
           <MyProducts
             product={Ghee}
             tittle="Desi Ghee"
-            ingredients="Khalis Desi Ghee"
-            quantity="1Kg"
+            quantity="1 kg"
+            price='30$'
             click={() => {
               navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee });
             }}

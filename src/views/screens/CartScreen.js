@@ -31,18 +31,21 @@ function CartCard() {
             paddingVertical: 20,
             flex: 1,
           }}>
-          <Text style={{fontWeight: 'bold', fontSize: 16}}>Milk</Text>
-          <Text style={{fontSize: 13, color: COLORS.grey}}>
-            Cow Milk
+          <Text style={{fontWeight: 'bold', fontSize: 20}}>Milk</Text>
+          <Text style={{fontSize: 16,fontWeight: 'bold', color: "black",marginTop:15}}>
+            15$
           </Text>
-          <Text style={{fontSize: 17, fontWeight: 'bold'}}>24 $</Text>
+          
         </View>
         <View style={{marginRight: 20, alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold', fontSize: 18}}>3</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 18,marginVertical:5}}>3</Text>
+
+          <TouchableOpacity>
           <View style={style.actionBtn}>
-            <Icon name="remove" size={25} color={COLORS.white} />
-            <Icon name="add" size={25} color={COLORS.white} />
+            <Icon name="delete" size={25} color={COLORS.white} />
           </View>
+
+          </TouchableOpacity>
         </View>
       </View>
   )
@@ -73,7 +76,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
    actionBtn: {
-    width: 80,
+    width: 60,
     height: 30,
     
     backgroundColor: COLORS.primary,
