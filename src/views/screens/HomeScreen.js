@@ -107,7 +107,7 @@ const MyProducts = (prop, { navigation }) => {
 function HomeScreen({ navigation }) {
   return (
     <View style={style.container}>
-      <Header />
+      <Header/>
       <View style={{ paddingHorizontal: 10}}>
         <View style={{ flexDirection: "row" ,marginBottom:-30}}>
           <MyProducts
