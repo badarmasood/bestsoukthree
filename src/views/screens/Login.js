@@ -31,6 +31,7 @@ const LoginApp = ({ navigation }) => {
           alignItems: "center",
           marginHorizontal:10,
           backgroundColor: COLORS.primary,
+          
         }}
       >
         <Image
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
+    marginTop:50,
   },
 
   input: {

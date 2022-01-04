@@ -12,12 +12,15 @@ import HomeScreen from "./src/views/screens/HomeScreen.js";
 
 import Signup from "./src/views/screens/SignUp.js";
 import LoginApp from "./src/views/screens/Login.js";
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator  screenOptions={{
+    headerShown: false
+  }}>
         <Stack.Screen name="Login" component={LoginApp} />
         <Stack.Screen name="SignUp" component={Signup} />
         <Stack.Screen name="Home" component={BottomNavigator} />

@@ -31,7 +31,7 @@ function BottomNavigator() {
         activeTintColor: '#37b34e',
       }}>
       <Tab.Screen
-        name="HomeScreen"
+        name="Home"
         component={HomeScreen}
         options={{
           tabBarIcon: ({color}) => (
@@ -74,7 +74,7 @@ function BottomNavigator() {
       />
       */}
       <Tab.Screen
-        name="Cart_Screen"
+        name="CartScreen"
         component={CartScreen}
         options={{
           tabBarIcon: ({color}) => (

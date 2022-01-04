@@ -65,6 +65,8 @@ function ProductDetails(props) {
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley.
+            orem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley.
           </Text>
           <View style={{ marginTop: 60, marginBottom: 60 }}>
             <TouchableOpacity activeOpacity={0.8}>
@@ -89,9 +91,12 @@ function ProductDetails(props) {
 function DetailsScreen({ route, navigation }) {
   console.log(route.params.title);
   return (
-    <View>
+    
+      
+    <View style={{marginTop:20}}>
       <ProductDetails title={route.params.title}  image={route.params.image} navigation={navigation} />
     </View>
+    
   );
 }
 
@@ -112,7 +117,7 @@ const style = StyleSheet.create({
   },
 
   detailsText: {
-    marginTop: 10,
+    marginVertical: 25,
     lineHeight: 24,
     fontSize: 16,
     color: COLORS.white,

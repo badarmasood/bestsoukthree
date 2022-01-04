@@ -24,6 +24,7 @@ const Signup = ({ navigation }) => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: COLORS.primary,
+          marginHorizontal:10,
         }}
       >
         <Image
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
+    marginTop:50,
   },
 
   input: {
