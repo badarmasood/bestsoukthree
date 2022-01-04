@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { database_key, project_key } from "../../consts/keys";
 import {
   SafeAreaView,
   Text,
@@ -14,8 +15,13 @@ import {
 //import Card
 import { Card } from "react-native-paper";
 import COLORS from "../../consts/colors";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = ({ navigation }) => {
+  const [name, setName] = React.useState();
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
   return (
     <SafeAreaView style={styles.container}>
       <Card
@@ -24,7 +30,7 @@ const Signup = ({ navigation }) => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: COLORS.primary,
-          marginHorizontal:10,
+          marginHorizontal: 10,
         }}
       >
         <Image
@@ -36,11 +42,63 @@ const Signup = ({ navigation }) => {
       <View style={{ borderRadius: 20, marginTop: 20, padding: 20 }}>
         <Text style={styles.paragraph}> Sign Up</Text>
 
-        <TextInput style={styles.input} placeholder="Name" />
-        <TextInput style={styles.input} placeholder="Email" />
-        <TextInput style={styles.input} placeholder="Password" />
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          onChangeText={(value) => {
+            setName(value);
+          }}
+          value={name}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          onChangeText={(value) => {
+            setEmail(value);
+          }}
+          value={email}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          onChangeText={(value) => {
+            setPassword(value);
+          }}
+          value={password}
+        />
 
-        <TouchableOpacity activeOpacity={0.8}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={async () => {
+            const response = await axios.post(
+              `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${project_key}`,
+              {
+                email: email,
+                password: password,
+                returnSecureToken: true,
+              }
+            );
+
+            const parsedData = response.data;
+            const localId = parsedData.localId;
+
+            await axios.post(`${database_key}users/${localId}.json`, {
+              name: name,
+              email: email,
+            });
+
+            await AsyncStorage.setItem(
+              "userData",
+              JSON.stringify({
+                name: name,
+                localId: localId,
+              })
+            );
+
+            navigation.replace("Home");
+          }}
+        >
           <View
             style={{
               ...styles.btnContainer,
@@ -55,7 +113,7 @@ const Signup = ({ navigation }) => {
 
         <View style={styles.row}>
           <Text>Already have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Text style={styles.link}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -69,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
-    marginTop:50,
+    marginTop: 50,
   },
 
   input: {
@@ -103,7 +161,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     height: 60,
     borderRadius: 10,
-    marginTop:12,
+    marginTop: 12,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -1,26 +1,26 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from "react";
+import { Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import COLORS from '../../consts/colors';
+import COLORS from "../../consts/colors";
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
-import HomeScreen from '../screens/HomeScreen'
-import DetailsScreen from '../screens/DetailsScreen'
-import CartScreen from '../screens/CartScreen'
-import SignUp from '../screens/SignUp'
-import Login from '../screens/Login'
-
+import HomeScreen from "../screens/HomeScreen";
+import DetailsScreen from "../screens/DetailsScreen";
+import CartScreen from "../screens/CartScreen";
+import SignUp from "../screens/SignUp";
+import Login from "../screens/Login";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tab = createBottomTabNavigator();
 
 function BottomNavigator() {
-
   return (
-      <Tab.Navigator
+    <Tab.Navigator
       tabBarOptions={{
         style: {
           height: 55,
@@ -28,15 +28,30 @@ function BottomNavigator() {
           elevation: 0,
         },
         showLabel: true,
-        activeTintColor: '#37b34e',
-      }}>
+        activeTintColor: "#37b34e",
+      }}
+    >
       <Tab.Screen
-        name="Home"
+        name="Home_Screen"
         component={HomeScreen}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icon name="home-filled" color={color} size={28} />
-          ),
+        options={({ navigation }) => {
+          return {
+            tabBarIcon: ({ color }) => (
+              <Icon name="home-filled" color={color} size={28} />
+            ),
+            headerRight: () => {
+              return (
+                <Pressable
+                  onPress={async () => {
+                    await AsyncStorage.removeItem("userData");
+                    navigation.replace("Login");
+                  }}
+                >
+                  <Text>Sign Out</Text>
+                </Pressable>
+              );
+            },
+          };
         }}
       />
       {/*
@@ -74,10 +89,10 @@ function BottomNavigator() {
       />
       */}
       <Tab.Screen
-        name="CartScreen"
+        name="Cart_Screen"
         component={CartScreen}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({ color }) => (
             <Icon name="shopping-cart" color={color} size={28} />
           ),
         }}
@@ -86,22 +101,13 @@ function BottomNavigator() {
         name="Signup"
         component={SignUp}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({ color }) => (
             <Icon name="shopping-cart" color={color} size={28} />
           ),
         }}
       />
-      <Tab.Screen
-        name="Login"
-        component={Login}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icon name="shopping-cart" color={color} size={28} />
-          ),
-        }}
-      />
+      
     </Tab.Navigator>
-   
   );
 }
 export default BottomNavigator;

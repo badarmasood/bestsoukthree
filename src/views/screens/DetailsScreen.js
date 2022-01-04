@@ -91,8 +91,7 @@ function ProductDetails(props) {
 function DetailsScreen({ route, navigation }) {
   console.log(route.params.title);
   return (
-    
-      
+  
     <View style={{marginTop:20}}>
       <ProductDetails title={route.params.title}  image={route.params.image} navigation={navigation} />
     </View>

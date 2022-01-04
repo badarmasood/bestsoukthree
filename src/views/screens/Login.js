@@ -20,8 +20,20 @@ import {
 //import Card
 import { Card } from "react-native-paper";
 import COLORS from "../../consts/colors";
+import axios from "axios";
+import { database_key, project_key } from "../../consts/keys";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LoginApp = ({ navigation }) => {
+const LoginApp = ({ route, navigation }) => {
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+
+  React.useEffect(async () => {
+    const dataExist = await AsyncStorage.getItem("userData");
+    if (dataExist) {
+      navigation.replace("Home");
+    }
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -29,9 +41,8 @@ const LoginApp = ({ navigation }) => {
           borderRadius: 30,
           justifyContent: "center",
           alignItems: "center",
-          marginHorizontal:10,
+          marginHorizontal: 10,
           backgroundColor: COLORS.primary,
-          
         }}
       >
         <Image
@@ -43,12 +54,58 @@ const LoginApp = ({ navigation }) => {
       <View style={{ borderRadius: 20, marginTop: 20, padding: 20 }}>
         <Text style={styles.paragraph}> E DAIRY</Text>
 
-        <TextInput style={styles.input} placeholder="Enter Email" />
-        <TextInput style={styles.input} placeholder="Enter Password" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Email"
+          onChangeText={(val) => {
+            setEmail(val);
+          }}
+          value={email}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Password"
+          onChangeText={(val) => {
+            setPassword(val);
+          }}
+          value={password}
+          secureTextEntry
+        />
 
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("Home")}
+          onPress={async () => {
+            const response = await axios.post(
+              `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${project_key}`,
+              { email: email, password: password, returnSecureToken: true }
+            );
+            const parsedData = response.data;
+            const localId = parsedData.localId;
+
+            const userData = await axios.get(
+              `${database_key}users/${localId}.json`
+            );
+            const parsedUserData = userData.data;
+
+            console.log(userData.data);
+
+            var userName = "";
+
+            for (var key in parsedUserData) {
+              // console.log(userData[key]);
+              userName = parsedUserData[key].name;
+            }
+
+            await AsyncStorage.setItem(
+              "userData",
+              JSON.stringify({
+                name: userName,
+                localId: localId,
+              })
+            );
+
+            navigation.replace("Home");
+          }}
         >
           <View
             style={{
@@ -79,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
-    marginTop:50,
+    marginTop: 50,
   },
 
   input: {
@@ -111,7 +168,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     backgroundColor: COLORS.primary,
     height: 60,
-    marginTop:12,
+    marginTop: 12,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

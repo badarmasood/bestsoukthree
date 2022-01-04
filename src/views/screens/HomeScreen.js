@@ -145,7 +145,7 @@ function HomeScreen({ navigation }) {
             ingredients="Khalis Desi Ghee"
             quantity="1Kg"
             click={() => {
-              navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee  });
+              navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee });
             }}
           />
         </View>
