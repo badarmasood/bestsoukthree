@@ -37,7 +37,7 @@ const LoginApp = ({ navigation }) => {
         <Text style={styles.paragraph}> Login</Text>
         <TextInput
           style={styles.texInput2}
-          placeholder="Enter Email"
+          placeholder="Enter the Email"
           placeholderTextColor="black"
         />
        
