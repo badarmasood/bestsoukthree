@@ -6,7 +6,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import COLORS from "../../consts/colors";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+
 import Icon from "react-native-vector-icons/MaterialIcons";
+
 
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
@@ -47,7 +49,7 @@ function BottomNavigator() {
                     navigation.replace("Login");
                   }}
                 >
-                  <Text>Sign Out</Text>
+                  <Icon name="logout"  size={28} style={{padding:10}} />
                 </Pressable>
               );
             },
