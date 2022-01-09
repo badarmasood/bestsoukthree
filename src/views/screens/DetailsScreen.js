@@ -45,7 +45,7 @@ function ProductDetails(props) {
         >
           <Image source={props.image} style={{ height: 170, width: 200}} />
         </View>
-
+        
         <View style={style.details}>
           <View
             style={{
@@ -89,7 +89,7 @@ function ProductDetails(props) {
 }
 
 function DetailsScreen({ route, navigation }) {
-  console.log(route.params.title);
+  // console.log(route.params.title);
   return (
   
     <View style={{marginTop:20}}>

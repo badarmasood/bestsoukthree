@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import {
   Dimensions,
   Image,
@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Touchable,
+  ScrollView
 } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,8 +23,10 @@ import COLORS from "../../consts/colors";
 
 import Milk from "../../assets/milk.png";
 import Eggs from "../../assets/eggs.png";
-import yogurt from "../../assets/yogurt.png";
+import Yogurt from "../../assets/yogurt.png";
 import Ghee from "../../assets/Ghee.png";
+
+import fireDb from '../component/Firebase-config'
 
 function Header() {
   return (
@@ -68,12 +71,16 @@ function Header() {
 }
 
 const MyProducts = (prop, { navigation }) => {
+
   return (
-    <View style={{ flexDirection: "row" }}>
+    
+
+    
       <TouchableOpacity style={style.card} onPress={prop.click}>
         <View style={{ alignItems: "center", top: -60 }}>
+          
           <Image source={prop.product} style={{ height: 120, width: 150, }} />
-
+          
           <View style={{ marginHorizontal: 20, alignItems: "center" }}>
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
               {prop.tittle}
@@ -100,25 +107,71 @@ const MyProducts = (prop, { navigation }) => {
           </View>
         </View>
       </TouchableOpacity>
-    </View>
+  
   );
 };
 
 function HomeScreen({ navigation }) {
+
+
+    // Firebase
+  
+    const [data, setData] = useState({})
+    useEffect(()=>{
+      fireDb.child('products').on('value',(snapshot)=>{
+        if(snapshot.val()!==null){
+          setData({...snapshot.val()})
+        }
+        else{
+          setData({})
+        }
+      })
+      return()=>{
+        setData({})
+      }
+    },[])
+
+    
   return (
+
+    
     <View style={style.container}>
       <Header/>
-      <View style={{ paddingHorizontal: 10}}>
-        <View style={{ flexDirection: "row" ,marginBottom:-30}}>
+
+      <ScrollView  contentContainerStyle={{ flexDirection: 'row',
+        flexWrap: 'wrap', paddingHorizontal: 10 ,backgroundColor:"black"}}>
+          
+      
+        {Object.keys(data).map((id, index)=>{  
+
+         const myproduct= "../../assets/"+data[id].title+".png"
+        
+
+          return(
+            <View style={{width : '50%', flexDirection : "row"}}>
           <MyProducts
-            product={Milk}
-            tittle="Milk"
-            quantity="1 kg"
-            price='15$'
-            click={() => {
-              navigation.navigate("DetailScreen", { title: "Milk",image: Milk });
-            }}
+
+        
+          product= {Milk}
+          tittle={data[id].title}
+          quantity={data[id].Quantity+data[id].Unit}
+          price={data[id].Price}
+          click={() => {
+            navigation.navigate("DetailScreen", { title: "Milk",image: Milk });
+          }}
+          
           />
+          
+           </View>
+          )
+           })}
+          
+         
+
+       
+        
+         
+          {/*
           <MyProducts
             product={Eggs}
             tittle="Eggs"
@@ -148,8 +201,10 @@ function HomeScreen({ navigation }) {
               navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee });
             }}
           />
-        </View>
-      </View>
+          */}
+        
+      
+    </ScrollView>
     </View>
   );
 }
@@ -159,6 +214,8 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal: 5,
+  
+   
   },
   header: {
     marginTop: 20,

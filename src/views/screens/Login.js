@@ -25,6 +25,7 @@ import { database_key, project_key } from "../../consts/keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginApp = ({ route, navigation }) => {
+
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
@@ -79,6 +80,7 @@ const LoginApp = ({ route, navigation }) => {
               `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${project_key}`,
               { email: email, password: password, returnSecureToken: true }
             );
+            
             const parsedData = response.data;
             const localId = parsedData.localId;
 
