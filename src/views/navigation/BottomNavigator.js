@@ -32,6 +32,10 @@ function BottomNavigator() {
         showLabel: true,
         activeTintColor: "#37b34e",
       }}
+      screenOptions={{
+        headerShown: true
+      }}
+      
     >
       <Tab.Screen
         name="HomeScreen"
@@ -55,6 +59,7 @@ function BottomNavigator() {
             },
           };
         }}
+        
       />
       {/*
       <Tab.Screen

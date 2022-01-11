@@ -24,24 +24,15 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = React.useState();
   return (
     <SafeAreaView style={styles.container}>
-      <Card
-        style={{
-          borderRadius: 30,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: COLORS.primary,
-          marginHorizontal: 10,
-        }}
-      >
-        <Image
-          source={require("../../assets/milk.png")}
-          style={{ width: 170, height: 170 }}
+      <View style={{marginTop:60, alignItems:"center"}}>
+      <Image
+          source={require("../../assets/Edairy.png")}
+          style={{ width: 200, height: 200 }}
         />
-      </Card>
+      </View>
 
-      <View style={{ borderRadius: 20, marginTop: 20, padding: 20 }}>
-        <Text style={styles.paragraph}> Sign Up</Text>
-
+      <View style={{ borderRadius: 20, marginTop: 0, padding: 20 }}>
+        <Text style={styles.paragraph}> SIGN UP</Text>
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -127,7 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
-    marginTop: 50,
+    marginTop: 0,
   },
 
   input: {
@@ -140,8 +131,8 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize:30,
+    fontWeight: "600",
     textAlign: "center",
     marginVertical: 20,
     color: "black",

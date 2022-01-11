@@ -37,23 +37,15 @@ const LoginApp = ({ route, navigation }) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          borderRadius: 30,
-          justifyContent: "center",
-          alignItems: "center",
-          marginHorizontal: 10,
-          backgroundColor: COLORS.primary,
-        }}
-      >
-        <Image
-          source={require("../../assets/milk.png")}
-          style={{ width: 170, height: 170 }}
+      <View style={{marginTop:60, alignItems:"center",}}>
+      <Image
+          source={require("../../assets/Edairy.png")}
+          style={{ width: 200, height: 200 }}
         />
       </View>
 
-      <View style={{ borderRadius: 20, marginTop: 20, padding: 20 }}>
-        <Text style={styles.paragraph}> E DAIRY</Text>
+      <View style={{ borderRadius: 20, marginTop: 0, padding: 20,}}>
+        <Text style={styles.paragraph}> LOGIN IN</Text>
 
         <TextInput
           style={styles.input}
@@ -138,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     backgroundColor: "#fff",
-    marginTop: 50,
+    marginTop: 0,
   },
 
   input: {
@@ -151,10 +143,10 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize: 32,
-    fontWeight: "bold",
+    fontSize:30,
+    fontWeight: "600",
     textAlign: "center",
-    marginVertical: 20,
+    marginVertical: 15,
     color: "black",
   },
   row: {

@@ -28,6 +28,33 @@ import Ghee from "../../assets/Ghee.png";
 
 import fireDb from '../component/Firebase-config'
 
+function Cards() {
+  return(
+    <View>
+   <ScrollView >
+      <View
+        style={{
+          borderRadius: 20,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: COLORS.primary,
+          margin: 5,
+          flex:1,
+          flexDirection:"row",
+          width:350
+        }}
+      >
+        <Image
+          source={require("../../assets/milk.png")}
+          style={{ width: 160, height: 160 }}
+        />
+      </View>
+      </ScrollView>
+      
+    </View>
+  )
+}
+
 function Header() {
   return (
     <View style={{ backgroundColor: COLORS.white }}>
@@ -44,7 +71,16 @@ function Header() {
           </Text>
         </View>
       </View>
-      <View
+
+      <View style={{flexDirection:"row"}}>
+        <ScrollView horizontal={true}>
+      < Cards/>
+      < Cards/>
+      < Cards/>
+      </ScrollView>
+      </View>
+
+      {/*<View
         style={{
           marginTop: 10,
           flexDirection: "row",
@@ -61,7 +97,7 @@ function Header() {
         <View style={style.sortBtn}>
           <Icon name="tune" size={28} color={COLORS.white} />
         </View>
-      </View>
+      </View>*/}
     </View>
   );
 }
@@ -218,7 +254,7 @@ const style = StyleSheet.create({
    
   },
   header: {
-    marginTop: 20,
+    marginTop: -5,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
