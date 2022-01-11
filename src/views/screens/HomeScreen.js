@@ -41,12 +41,15 @@ function Cards() {
           margin: 5,
           flex:1,
           flexDirection:"row",
-          width:350
+          width:360,
+          borderRadius: 15,
+          elevation:5,
+          
         }}
       >
         <Image
           source={require("../../assets/milk.png")}
-          style={{ width: 160, height: 160 }}
+          style={{ width: 160, height: 150 }}
         />
       </View>
       </ScrollView>
@@ -62,18 +65,19 @@ function Header() {
         <View>
           <View style={{ flexDirection: "row" }}>
             <Text style={{ fontSize: 24 }}>Hello,</Text>
-            <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10 }}>
+            <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10,marginBottom:10 }}>
               Badar
             </Text>
           </View>
-          <Text style={{ marginTop: 5, fontSize: 22, color: COLORS.grey }}>
+          {/*<Text style={{ marginTop: 5, fontSize: 22, color: COLORS.grey }}>
             What do you want today
           </Text>
+          */}
         </View>
       </View>
 
-      <View style={{flexDirection:"row"}}>
-        <ScrollView horizontal={true}>
+      <View style={{flexDirection:"row",padding:5,paddingBottom:10,backgroundColor:"white"}}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       < Cards/>
       < Cards/>
       < Cards/>
@@ -95,7 +99,7 @@ function Header() {
           />
         </View>
         <View style={style.sortBtn}>
-          <Icon name="tune" size={28} color={COLORS.white} />
+          <Icon name="tune" size={28} color={COLORS.white}/>
         </View>
       </View>*/}
     </View>
@@ -172,10 +176,11 @@ function HomeScreen({ navigation }) {
 
     
     <View style={style.container}>
+
       <Header/>
 
       <ScrollView  contentContainerStyle={{ flexDirection: 'row',
-        flexWrap: 'wrap', paddingHorizontal: 10 ,backgroundColor:"black"}}>
+        flexWrap: 'wrap', paddingHorizontal: 10 ,backgroundColor:"white",marginTop:-25,paddingBottom:10}}>
           
       
         {Object.keys(data).map((id, index)=>{  
