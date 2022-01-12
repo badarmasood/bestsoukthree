@@ -43,15 +43,13 @@ function ProductDetails(props) {
             height: 280,
           }}
         >
-          <Image source={props.image} style={{ height: 170, width: 200}} />
+          <Image source={props.image} style={{ height: 170, width: 200 }} />
         </View>
-        
+
         <View style={style.details}>
           <View
             style={{
-              flexDirection: "row",
               justifyContent: "space-between",
-              alignItems: "center",
             }}
           >
             <Text
@@ -59,17 +57,25 @@ function ProductDetails(props) {
             >
               {props.title}
             </Text>
+            <Text
+              style={{ fontSize: 16, fontWeight: "500", color: COLORS.white }}
+            >
+              {props.price}
+            </Text>
           </View>
 
           <Text style={style.detailsText}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley.
-            orem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley.
+            ever since the 1500s, when an unknown printer took a galley. orem
+            Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley.
           </Text>
           <View style={{ marginTop: 60, marginBottom: 60 }}>
-            <TouchableOpacity activeOpacity={0.8}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => AddtoCart(props.title, props.price)}
+            >
               <View
                 style={{
                   ...style.btnContainer,
@@ -88,14 +94,27 @@ function ProductDetails(props) {
   );
 }
 
+function AddtoCart(name, price) {
+  var obj = { name: name, price: price };
+  console.log(obj);
+
+  // alert("badr");
+  cart_Array.push(obj);
+  
+  // console.log(cart_Array);
+}
+
 function DetailsScreen({ route, navigation }) {
   // console.log(route.params.title);
   return (
-  
-    <View style={{marginTop:20}}>
-      <ProductDetails title={route.params.title}  image={route.params.image} navigation={navigation} />
+    <View style={{ marginTop: 20 }}>
+      <ProductDetails
+        title={route.params.title}
+        price={route.params.price}
+        image={route.params.image}
+        navigation={navigation}
+      />
     </View>
-    
   );
 }
 

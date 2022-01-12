@@ -15,6 +15,11 @@ import LoginApp from "./src/views/screens/Login.js";
 
 const Stack = createNativeStackNavigator();
 
+// var cart_Array = [{}];
+// var x = 10;
+
+global.cart_Array = [];
+
 const App = () => {
   return (
     <NavigationContainer>

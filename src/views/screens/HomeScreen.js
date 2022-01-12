@@ -195,8 +195,9 @@ function HomeScreen({ navigation }) {
                 price={data[id].Price}
                 click={() => {
                   navigation.navigate("DetailScreen", {
-                    title: "Milk",
-                    image: Milk,
+                    title: data[id].title,
+                    price: data[id].Price,
+                    image: Eggs,
                   });
                 }}
               />
