@@ -24,8 +24,8 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = React.useState();
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{marginTop:60, alignItems:"center"}}>
-      <Image
+      <View style={{ marginTop: 60, alignItems: "center" }}>
+        <Image
           source={require("../../assets/Edairy.png")}
           style={{ width: 200, height: 200 }}
         />
@@ -104,7 +104,7 @@ const Signup = ({ navigation }) => {
 
         <View style={styles.row}>
           <Text>Already have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text style={styles.link}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize:30,
+    fontSize: 30,
     fontWeight: "600",
     textAlign: "center",
     marginVertical: 20,

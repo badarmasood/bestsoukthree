@@ -25,7 +25,6 @@ import { database_key, project_key } from "../../consts/keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginApp = ({ route, navigation }) => {
-
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
@@ -37,15 +36,15 @@ const LoginApp = ({ route, navigation }) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{marginTop:60, alignItems:"center",}}>
-      <Image
+      <View style={{ marginTop: 60, alignItems: "center" }}>
+        <Image
           source={require("../../assets/Edairy.png")}
           style={{ width: 200, height: 200 }}
         />
       </View>
 
-      <View style={{ borderRadius: 20, marginTop: 0, padding: 20,}}>
-        <Text style={styles.paragraph}> LOGIN IN</Text>
+      <View style={{ borderRadius: 20, marginTop: 0, padding: 20 }}>
+        <Text style={styles.paragraph}> LOG IN</Text>
 
         <TextInput
           style={styles.input}
@@ -72,7 +71,7 @@ const LoginApp = ({ route, navigation }) => {
               `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${project_key}`,
               { email: email, password: password, returnSecureToken: true }
             );
-            
+
             const parsedData = response.data;
             const localId = parsedData.localId;
 
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize:30,
+    fontSize: 30,
     fontWeight: "600",
     textAlign: "center",
     marginVertical: 15,

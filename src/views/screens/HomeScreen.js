@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Touchable,
-  ScrollView
+  ScrollView,
 } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -26,46 +26,41 @@ import Eggs from "../../assets/eggs.png";
 import Yogurt from "../../assets/yogurt.png";
 import Ghee from "../../assets/Ghee.png";
 
-import fireDb from '../component/Firebase-config'
+import ImageCard1 from "../../assets/card1.jpg";
+import ImageCard2 from "../../assets/card2.jpg";
+import ImageCard3 from "../../assets/card3.jpg";
+import ImageCard4 from "../../assets/card4.jpg";
 
-function Cards() {
-  return(
-    <View>
-   <ScrollView >
-      <View
-        style={{
-          borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: COLORS.primary,
-          margin: 5,
-          flex:1,
-          flexDirection:"row",
-          width:360,
-          borderRadius: 15,
-          elevation:5,
-          
-        }}
-      >
-        <Image
-          source={require("../../assets/milk.png")}
-          style={{ width: 160, height: 150 }}
-        />
-      </View>
-      </ScrollView>
-      
-    </View>
-  )
+import fireDb from "../component/Firebase-config";
+
+function Cards(props) {
+  return <Image source={props.ImageCard} style={style.cardImage} />;
 }
 
 function Header() {
+  {
+    /*<View style={style.cardScroll}>
+      <Image
+        source={require("../../assets/card1.jpg")}
+        style={{ padding: 10, width: 140, height: 150, resizeMode: "cover" }}
+      />
+    </View>
+  */
+  }
   return (
     <View style={{ backgroundColor: COLORS.white }}>
       <View style={style.header}>
         <View>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginTop: 5 }}>
             <Text style={{ fontSize: 24 }}>Hello,</Text>
-            <Text style={{ fontSize: 24, fontWeight: "bold", marginLeft: 10,marginBottom:10 }}>
+            <Text
+              style={{
+                fontSize: 24,
+                fontWeight: "bold",
+                marginLeft: 10,
+                marginBottom: 10,
+              }}
+            >
               Badar
             </Text>
           </View>
@@ -76,12 +71,25 @@ function Header() {
         </View>
       </View>
 
-      <View style={{flexDirection:"row",padding:5,paddingBottom:10,backgroundColor:"white"}}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      < Cards/>
-      < Cards/>
-      < Cards/>
-      </ScrollView>
+      <View
+        style={{
+          flexDirection: "row",
+          padding: 5,
+          marginTop: 0,
+          marginBottom: 0,
+          backgroundColor: "#e7f6f1",
+        }}
+      >
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{}}
+        >
+          <Cards ImageCard={ImageCard1} />
+          <Cards ImageCard={ImageCard2} />
+          <Cards ImageCard={ImageCard3} />
+          <Cards ImageCard={ImageCard4} />
+        </ScrollView>
       </View>
 
       {/*<View
@@ -111,108 +119,92 @@ function Header() {
 }
 
 const MyProducts = (prop, { navigation }) => {
-
   return (
-    
+    <TouchableOpacity style={style.card} onPress={prop.click}>
+      <View style={{ alignItems: "center", top: -60 }}>
+        <Image source={prop.product} style={{ height: 120, width: 150 }} />
 
-    
-      <TouchableOpacity style={style.card} onPress={prop.click}>
-        <View style={{ alignItems: "center", top: -60 }}>
-          
-          <Image source={prop.product} style={{ height: 120, width: 150, }} />
-          
-          <View style={{ marginHorizontal: 20, alignItems: "center" }}>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-              {prop.tittle}
-            </Text>
-            <Text style={{ fontSize: 14, color: COLORS.grey, marginTop: 2 }}>
-              {prop.quantity}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              marginTop: 5,
-              marginHorizontal: 20,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 50 }}>
-              {prop.price}
-            </Text>
-            <TouchableOpacity style={style.addToCartBtn}>
-              <Icon name="add" size={20} color={COLORS.white} />
-            </TouchableOpacity>
-          </View>
+        <View style={{ marginHorizontal: 20, alignItems: "center" }}>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            {prop.tittle}
+          </Text>
+          <Text style={{ fontSize: 14, color: COLORS.grey, marginTop: 2 }}>
+            {prop.quantity}
+          </Text>
         </View>
-      </TouchableOpacity>
-  
+
+        <View
+          style={{
+            marginTop: 5,
+            marginHorizontal: 20,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 50 }}>
+            {prop.price}
+          </Text>
+          <TouchableOpacity style={style.addToCartBtn}>
+            <Icon name="add" size={20} color={COLORS.white} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 function HomeScreen({ navigation }) {
+  // Firebase
 
-
-    // Firebase
-  
-    const [data, setData] = useState({})
-    useEffect(()=>{
-      fireDb.child('products').on('value',(snapshot)=>{
-        if(snapshot.val()!==null){
-          setData({...snapshot.val()})
-        }
-        else{
-          setData({})
-        }
-      })
-      return()=>{
-        setData({})
+  const [data, setData] = useState({});
+  useEffect(() => {
+    fireDb.child("products").on("value", (snapshot) => {
+      if (snapshot.val() !== null) {
+        setData({ ...snapshot.val() });
+      } else {
+        setData({});
       }
-    },[])
+    });
+    return () => {
+      setData({});
+    };
+  }, []);
 
-    
   return (
-
-    
     <View style={style.container}>
+      <Header />
 
-      <Header/>
+      <ScrollView
+        contentContainerStyle={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          paddingHorizontal: 10,
+          marginTop: -10,
+          paddingBottom: 10,
+        }}
+      >
+        {Object.keys(data).map((id, index) => {
+          const myproduct = "../../assets/" + data[id].title + ".png";
 
-      <ScrollView  contentContainerStyle={{ flexDirection: 'row',
-        flexWrap: 'wrap', paddingHorizontal: 10 ,backgroundColor:"white",marginTop:-25,paddingBottom:10}}>
-          
-      
-        {Object.keys(data).map((id, index)=>{  
+          return (
+            <View style={{ width: "50%", flexDirection: "row" }}>
+              <MyProducts
+                product={Milk}
+                tittle={data[id].title}
+                quantity={data[id].Quantity + data[id].Unit}
+                price={data[id].Price}
+                click={() => {
+                  navigation.navigate("DetailScreen", {
+                    title: "Milk",
+                    image: Milk,
+                  });
+                }}
+              />
+            </View>
+          );
+        })}
 
-         const myproduct= "../../assets/"+data[id].title+".png"
-        
-
-          return(
-            <View style={{width : '50%', flexDirection : "row"}}>
-          <MyProducts
-
-        
-          product= {Milk}
-          tittle={data[id].title}
-          quantity={data[id].Quantity+data[id].Unit}
-          price={data[id].Price}
-          click={() => {
-            navigation.navigate("DetailScreen", { title: "Milk",image: Milk });
-          }}
-          
-          />
-          
-           </View>
-          )
-           })}
-          
-         
-
-       
-        
-         
-          {/*
+        {/*
           <MyProducts
             product={Eggs}
             tittle="Eggs"
@@ -243,9 +235,7 @@ function HomeScreen({ navigation }) {
             }}
           />
           */}
-        
-      
-    </ScrollView>
+      </ScrollView>
     </View>
   );
 }
@@ -253,16 +243,33 @@ function HomeScreen({ navigation }) {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     paddingHorizontal: 5,
-  
-   
+    backgroundColor: "#e7f6f1",
   },
   header: {
-    marginTop: -5,
+    marginTop: 0,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
+    backgroundColor: "#e7f6f1",
+  },
+  cardImage: {
+    padding: 10,
+    height: 150,
+    resizeMode: "cover",
+    width: 300,
+    borderRadius: 15,
+    // backgroundColor: "white",
+    //backgroundColor: COLORS.primary,
+    marginHorizontal: 8,
+    marginVertical: 0,
+
+    overflow: "hidden",
+    //Properties to setup your Shadow
+
+    shadowOffset: { width: 10, height: 10 },
+    shadowColor: "#000",
+    shadowOpacity: 1,
   },
   inputContainer: {
     flex: 1,
@@ -288,8 +295,8 @@ const style = StyleSheet.create({
     marginHorizontal: 10,
     marginBottom: 20,
     marginTop: 90,
-    borderRadius: 15,
-    elevation: 13,
+    borderRadius: 10,
+    elevation: 10,
     backgroundColor: COLORS.white,
   },
   addToCartBtn: {

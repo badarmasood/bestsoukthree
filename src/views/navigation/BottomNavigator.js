@@ -9,7 +9,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import CartScreen from "../screens/CartScreen";
@@ -33,9 +32,8 @@ function BottomNavigator() {
         activeTintColor: "#37b34e",
       }}
       screenOptions={{
-        headerShown: true
+        headerShown: true,
       }}
-      
     >
       <Tab.Screen
         name="HomeScreen"
@@ -53,13 +51,12 @@ function BottomNavigator() {
                     navigation.replace("Login");
                   }}
                 >
-                  <Icon name="logout"  size={28} style={{padding:10}} />
+                  <Icon name="logout" size={28} style={{ padding: 10 }} />
                 </Pressable>
               );
             },
           };
         }}
-        
       />
       {/*
       <Tab.Screen
@@ -104,16 +101,6 @@ function BottomNavigator() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Signup"
-        component={SignUp}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="shopping-cart" color={color} size={28} />
-          ),
-        }}
-      />
-      
     </Tab.Navigator>
   );
 }
