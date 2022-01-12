@@ -24,7 +24,7 @@ const Signup = ({ navigation }) => {
   const [password, setPassword] = React.useState();
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ marginTop: 60, alignItems: "center" }}>
+      <View style={{ marginTop: 80, marginBottom: -20, alignItems: "center" }}>
         <Image
           source={require("../../assets/Edairy.png")}
           style={{ width: 200, height: 200 }}
@@ -32,7 +32,7 @@ const Signup = ({ navigation }) => {
       </View>
 
       <View style={{ borderRadius: 20, marginTop: 0, padding: 20 }}>
-        <Text style={styles.paragraph}> SIGN UP</Text>
+        <Text style={styles.paragraph}>Make an account</Text>
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -131,11 +131,11 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize: 30,
-    fontWeight: "600",
-    textAlign: "center",
-    marginVertical: 20,
-    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginVertical: 10,
+    color: COLORS.primary,
+    marginLeft: 5,
   },
   row: {
     flexDirection: "row",
