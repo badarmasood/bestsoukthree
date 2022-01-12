@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   ScrollView,
   Button,
+  Alert,
 } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -43,7 +44,12 @@ function ProductDetails(props) {
             height: 280,
           }}
         >
-          <Image source={props.image} style={{ height: 170, width: 200 }} />
+          <Image
+            source={{
+              uri: props.image,
+            }}
+            style={{ height: 170, width: 200 }}
+          />
         </View>
 
         <View style={style.details}>
@@ -74,7 +80,7 @@ function ProductDetails(props) {
           <View style={{ marginTop: 60, marginBottom: 60 }}>
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => AddtoCart(props.title, props.price)}
+              onPress={() => AddtoCart(props.title, props.price, props.image)}
             >
               <View
                 style={{
@@ -94,14 +100,15 @@ function ProductDetails(props) {
   );
 }
 
-function AddtoCart(name, price) {
-  var obj = { name: name, price: price };
-  console.log(obj);
+function AddtoCart(name, price, image) {
+  var obj = { name: name, price: price, image: image };
 
-  // alert("badr");
+  // console.log(obj);
+
+  // Alert.alert('"Product Added to the Cart");"
+  alert("Product added to Cart");
   cart_Array.push(obj);
-  
-  // console.log(cart_Array);
+  console.log(cart_Array);
 }
 
 function DetailsScreen({ route, navigation }) {

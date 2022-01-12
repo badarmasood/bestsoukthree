@@ -122,7 +122,12 @@ const MyProducts = (prop, { navigation }) => {
   return (
     <TouchableOpacity style={style.card} onPress={prop.click}>
       <View style={{ alignItems: "center", top: -60 }}>
-        <Image source={prop.product} style={{ height: 120, width: 150 }} />
+        <Image
+          source={{
+            uri: prop.product,
+          }}
+          style={{ height: 120, width: 150 }}
+        />
 
         <View style={{ marginHorizontal: 20, alignItems: "center" }}>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -136,17 +141,23 @@ const MyProducts = (prop, { navigation }) => {
         <View
           style={{
             marginTop: 5,
-            marginHorizontal: 20,
-            flexDirection: "row",
-            justifyContent: "space-between",
+            marginLeft: 50,
+            alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 18, fontWeight: "bold", marginRight: 50 }}>
-            {prop.price}
+          <Text
+            style={{
+              fontSize: 17,
+              fontWeight: "bold",
+              marginRight: 50,
+            }}
+          >
+            RS: {prop.price}
           </Text>
-          <TouchableOpacity style={style.addToCartBtn}>
+
+          {/* <TouchableOpacity style={style.addToCartBtn}>
             <Icon name="add" size={20} color={COLORS.white} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </TouchableOpacity>
@@ -189,7 +200,7 @@ function HomeScreen({ navigation }) {
           return (
             <View style={{ width: "50%", flexDirection: "row" }}>
               <MyProducts
-                product={Milk}
+                product={data[id].link}
                 tittle={data[id].title}
                 quantity={data[id].Quantity + data[id].Unit}
                 price={data[id].Price}
@@ -197,7 +208,7 @@ function HomeScreen({ navigation }) {
                   navigation.navigate("DetailScreen", {
                     title: data[id].title,
                     price: data[id].Price,
-                    image: Eggs,
+                    image: data[id].link,
                   });
                 }}
               />

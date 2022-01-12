@@ -20,6 +20,8 @@ const Stack = createNativeStackNavigator();
 
 global.cart_Array = [];
 
+// const [mycartArray, setmycartArray] = React.useState(0);
+
 const App = () => {
   return (
     <NavigationContainer>

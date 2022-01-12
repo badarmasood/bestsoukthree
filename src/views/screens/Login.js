@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginTop: 0,
   },
-
   input: {
     height: 60,
     marginVertical: 12,
@@ -140,7 +139,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: COLORS.primary,
   },
-
   paragraph: {
     fontSize: 16,
     fontWeight: "bold",
