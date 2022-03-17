@@ -17,6 +17,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import DetailsScreen from "./DetailsScreen";
+import Category from "./Category";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 import COLORS from "../../consts/colors";
@@ -128,43 +129,21 @@ const MyProducts = (prop, { navigation }) => {
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             {prop.tittle}
           </Text>
-          <Text style={{ fontSize: 14, color: COLORS.grey, marginTop: 2 }}>
-            {prop.quantity}
-          </Text>
-        </View>
-
-        <View
-          style={{
-            marginTop: 5,
-            marginLeft: 50,
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: "bold",
-              marginRight: 50,
-            }}
-          >
-            RS: {prop.price}
-          </Text>
-
-          {/* <TouchableOpacity style={style.addToCartBtn}>
-            <Icon name="add" size={20} color={COLORS.white} />
-          </TouchableOpacity> */}
         </View>
       </View>
     </TouchableOpacity>
   );
 };
 
-function HomeScreen({ route, navigation }) {
+function FirstScreen({ navigation }) {
   // Firebase
+
+  const [data, setData] = useState({});
 
   return (
     <View style={style.container}>
       <Header />
+
       <ScrollView
         contentContainerStyle={{
           flexDirection: "row",
@@ -176,14 +155,12 @@ function HomeScreen({ route, navigation }) {
       >
         <View style={{ flexDirection: "row" }}>
           <MyProducts
-            product={route.params.tasveer}
-            tittle={route.params.naam}
+            product={Milk}
+            tittle="Men"
+            quantity="1 kg"
             price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Yogurt",
-                image: Yogurt,
-              });
+              navigation.navigate("Category");
             }}
           />
           <MyProducts
@@ -192,23 +169,18 @@ function HomeScreen({ route, navigation }) {
             quantity="1 kg"
             price="30$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Ghee",
-                image: Ghee,
-              });
+              navigation.navigate("HomeScreen");
             }}
           />
         </View>
         <View style={{ flexDirection: "row" }}>
           <MyProducts
-            product={route.params.tasveer}
-            tittle={route.params.naam}
+            product={Yogurt}
+            tittle="Yogurt"
+            quantity="1 kg"
             price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Yogurt",
-                image: Yogurt,
-              });
+              navigation.navigate("HomeScreen");
             }}
           />
           <MyProducts
@@ -217,13 +189,63 @@ function HomeScreen({ route, navigation }) {
             quantity="1 kg"
             price="30$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Ghee",
-                image: Ghee,
-              });
+              navigation.navigate("HomeScreen");
             }}
           />
         </View>
+
+        <View style={{ flexDirection: "row" }}>
+          <MyProducts
+            product={Yogurt}
+            tittle="Yogurt"
+            quantity="1 kg"
+            price="15$"
+            click={() => {
+              navigation.navigate("HomeScreen");
+            }}
+          />
+          <MyProducts
+            product={Ghee}
+            tittle="Desi Ghee"
+            quantity="1 kg"
+            price="30$"
+            click={() => {
+              navigation.navigate("HomeScreen");
+            }}
+          />
+        </View>
+
+        {/*
+          <MyProducts
+            product={Eggs}
+            tittle="Eggs"
+            quantity="1 Dozen"
+            price='10$'
+            click={() => {
+              navigation.navigate("DetailScreen", { title: "Eggs", image: Eggs });
+            }}
+          />
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <MyProducts
+            product={yogurt}
+            tittle="Yogurt"
+            quantity="1 kg"
+            price='15$'
+            click={() => {
+              navigation.navigate("DetailScreen", { title: "Yogurt",image: yogurt });
+            }}
+          />
+          <MyProducts
+            product={Ghee}
+            tittle="Desi Ghee"
+            quantity="1 kg"
+            price='30$'
+            click={() => {
+              navigation.navigate("DetailScreen", { title: "Ghee",image: Ghee });
+            }}
+          />
+          */}
       </ScrollView>
     </View>
   );
@@ -280,7 +302,7 @@ const style = StyleSheet.create({
   },
   card: {
     height: 150,
-    width: 155,
+    width: 150,
     marginHorizontal: 10,
     marginBottom: 20,
     marginTop: 90,
@@ -299,4 +321,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default FirstScreen;

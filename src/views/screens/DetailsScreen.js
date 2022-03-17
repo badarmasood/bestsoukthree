@@ -44,12 +44,7 @@ function ProductDetails(props) {
             height: 280,
           }}
         >
-          <Image
-            source={{
-              uri: props.image,
-            }}
-            style={{ height: 170, width: 200 }}
-          />
+          <Image source={props.image} style={{ height: 170, width: 200 }} />
         </View>
 
         <View style={style.details}>

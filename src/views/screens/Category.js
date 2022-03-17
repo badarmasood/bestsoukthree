@@ -159,7 +159,7 @@ const MyProducts = (prop, { navigation }) => {
   );
 };
 
-function HomeScreen({ route, navigation }) {
+function Category({ route, navigation }) {
   // Firebase
 
   return (
@@ -176,50 +176,78 @@ function HomeScreen({ route, navigation }) {
       >
         <View style={{ flexDirection: "row" }}>
           <MyProducts
-            product={route.params.tasveer}
-            tittle={route.params.naam}
+            product={Yogurt}
+            tittle="Shirts"
             price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Yogurt",
-                image: Yogurt,
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "Shirt1",
+                miqdaar: "5kilo",
               });
             }}
           />
           <MyProducts
             product={Ghee}
-            tittle="Desi Ghee"
-            quantity="1 kg"
-            price="30$"
+            tittle="Shirts"
+            price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Ghee",
-                image: Ghee,
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "Watches",
+                miqdaar: "5kilo",
               });
             }}
           />
         </View>
         <View style={{ flexDirection: "row" }}>
           <MyProducts
-            product={route.params.tasveer}
-            tittle={route.params.naam}
+            product={Ghee}
+            tittle="Shirts"
             price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Yogurt",
-                image: Yogurt,
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "jeans",
+                miqdaar: "5kilo",
               });
             }}
           />
           <MyProducts
             product={Ghee}
-            tittle="Desi Ghee"
-            quantity="1 kg"
-            price="30$"
+            tittle="Shirts"
+            price="15$"
             click={() => {
-              navigation.navigate("DetailScreen", {
-                title: "Ghee",
-                image: Ghee,
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "Watches",
+                miqdaar: "5kilo",
+              });
+            }}
+          />
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <MyProducts
+            product={Ghee}
+            tittle="Shirts"
+            price="15$"
+            click={() => {
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "Watches",
+                miqdaar: "5kilo",
+              });
+            }}
+          />
+          <MyProducts
+            product={Ghee}
+            tittle="Shirts"
+            price="15$"
+            click={() => {
+              navigation.navigate("HomeScreen", {
+                tasveer: Milk,
+                naam: "Watches",
+                miqdaar: "5kilo",
               });
             }}
           />
@@ -299,4 +327,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Category;

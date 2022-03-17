@@ -66,38 +66,8 @@ const LoginApp = ({ route, navigation }) => {
 
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={async () => {
-            const response = await axios.post(
-              `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${project_key}`,
-              { email: email, password: password, returnSecureToken: true }
-            );
-
-            const parsedData = response.data;
-            const localId = parsedData.localId;
-
-            const userData = await axios.get(
-              `${database_key}users/${localId}.json`
-            );
-            const parsedUserData = userData.data;
-
-            console.log(userData.data);
-
-            var userName = "";
-
-            for (var key in parsedUserData) {
-              // console.log(userData[key]);
-              userName = parsedUserData[key].name;
-            }
-
-            await AsyncStorage.setItem(
-              "userData",
-              JSON.stringify({
-                name: userName,
-                localId: localId,
-              })
-            );
-
-            navigation.replace("Home");
+          onPress={() => {
+            navigation.replace("FirstScreen");
           }}
         >
           <View

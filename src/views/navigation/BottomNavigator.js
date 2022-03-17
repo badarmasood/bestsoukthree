@@ -9,6 +9,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
+import FirstScreen from "../screens/FirstScreen";
+import Category from "../screens/Category";
+
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import CartScreen from "../screens/CartScreen";
@@ -35,6 +38,53 @@ function BottomNavigator() {
         headerShown: true,
       }}
     >
+      <Tab.Screen
+        name="FirstScreen"
+        component={FirstScreen}
+        options={({ navigation }) => {
+          return {
+            tabBarIcon: ({ color }) => (
+              <Icon name="home-filled" color={color} size={28} />
+            ),
+            headerRight: () => {
+              return (
+                <Pressable
+                  onPress={async () => {
+                    await AsyncStorage.removeItem("userData");
+                    navigation.replace("Login");
+                  }}
+                >
+                  <Icon name="logout" size={28} style={{ padding: 10 }} />
+                </Pressable>
+              );
+            },
+          };
+        }}
+      />
+
+      <Tab.Screen
+        name="Category"
+        component={Category}
+        options={({ navigation }) => {
+          return {
+            tabBarIcon: ({ color }) => (
+              <Icon name="home-filled" color={color} size={28} />
+            ),
+            headerRight: () => {
+              return (
+                <Pressable
+                  onPress={async () => {
+                    await AsyncStorage.removeItem("userData");
+                    navigation.replace("Login");
+                  }}
+                >
+                  <Icon name="logout" size={28} style={{ padding: 10 }} />
+                </Pressable>
+              );
+            },
+          };
+        }}
+      />
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
